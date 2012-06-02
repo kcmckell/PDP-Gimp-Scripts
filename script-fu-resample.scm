@@ -19,6 +19,14 @@
         (set! imwidth (car (gimp-image-width image)))
         ; Translate the real-unit contraction into pixel contraction (used by GIMP).
         (set! wentry (round (/ imwidth contraction)))
+        ; Test that new pixel size is >= 1
+        (if (< wentry 1)
+          (
+            (gimp-message "You have specified a pixel size that is smaller than the pixels in the original image.  Aborting.")
+            (set! wentry 1)
+          )
+          ()
+        )
         ; Pixelize with square pixels: Non-interactive, image, drawable, pixel width, pixel height.
         (plug-in-pixelize2 1 image drawable wentry wentry)
         ; Show results.
@@ -38,6 +46,6 @@
     "RGB GRAY INDEXED"
     SF-IMAGE "Image" 0
     SF-DRAWABLE "Drawable" 0
-    SF-VALUE "In real units (m, km, etc.), how wide is your image" "0"
-    SF-VALUE "In the same units, how wide is your pixel" "0"    
+    SF-VALUE "In real units (m, km, etc.), how wide is your image" "1"
+    SF-VALUE "In the same units, how wide is your pixel" "1"    
 )
