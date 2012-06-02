@@ -1,8 +1,9 @@
 ; script-fu-resample
 ; K. Clay McKell
+; Resample an image at a fixed pixel size.
 ; 
 ; UPDATE LOG
-; June 2012 -- 0.1 -- Initial development.
+; June 2012 -- 1.0 -- Working.
 ;
 
 (define (script-fu-resample image drawable framewidth pixwidth)
