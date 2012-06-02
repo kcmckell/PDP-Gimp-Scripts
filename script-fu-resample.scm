@@ -21,7 +21,7 @@
         (set! wentry (round (/ imwidth contraction)))
         ; Test that new pixel size is >= 1
         (if (< wentry 1)
-          (
+          (begin 
             (gimp-message "You have specified a pixel size that is smaller than the pixels in the original image.  Aborting.")
             (set! wentry 1)
           )
