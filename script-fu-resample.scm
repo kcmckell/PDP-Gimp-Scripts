@@ -30,15 +30,14 @@
         ; Pixelize with square pixels: Non-interactive, image, drawable, pixel width, pixel height.
         (plug-in-pixelize2 1 image drawable wentry wentry)
         ; Show results.
-        (gimp-displays-flush)
         (gimp-image-undo-group-end image)
-        (gimp-image-clean-all image)
+        (gimp-displays-flush)
     )
 
 )
 
 (script-fu-register "script-fu-resample"
-    "<Image>/Image/Resample"
+    "Resample"
     "Sample an image at a specified pixel size and bit depth."
     "K. Clay McKell"
     "K. Clay McKell"
@@ -49,3 +48,5 @@
     SF-VALUE "In real units (m, km, etc.), how wide is your image" "1"
     SF-VALUE "In the same units, how wide is your pixel" "1"    
 )
+
+(script-fu-menu-register "script-fu-resample" "<Image>/Image/")
