@@ -42,7 +42,7 @@
     "K. Clay McKell"
     "K. Clay McKell"
     "June 2012"
-    "RGB GRAY INDEXED"
+    "*"
     SF-IMAGE "Image" 0
     SF-DRAWABLE "Drawable" 0
     SF-VALUE "In real units (m, km, etc.), how wide is your image" "1"
