@@ -99,7 +99,7 @@
     SF-VALUE "In real units (m, km, etc.), how wide is your image" "1"
     SF-VALUE "In the same units, how wide is your pixel" "1"   
     SF-PALETTE "If you would like a custom color palette, select it here.  \nIf not, leave as 'Default'" "Default"
-    SF-VALUE "To only set the number of bins and \nhave the computer select which color each bin gets, \nspecify the number of bins here" "2"
+    SF-VALUE "To only set the number of bins and have the computer select which \ncolor each bin gets, specify the number of bins here (max of 256)" "2"
 )
 
 (script-fu-menu-register "script-fu-resample" "<Image>/Image/")
