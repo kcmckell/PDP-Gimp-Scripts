@@ -5,12 +5,16 @@
 ; UPDATE LOG
 ; June 2012 -- 1.0 -- Working.
 ; June 2012 -- 1.1 -- Improve UI.  Move sampled image to new window and display resulting dimensions.
+; June 2012 -- 1.2 -- Improve UI.  Remove user-input for framewidth.
 ;
 
-(define (script-fu-resample image drawable framewidth pixwidth custompalette numcolors)
+(define (script-fu-resample image drawable casenumber pixunits pixwidth custompalette numcolors)
     (let*
         (   ; Construct variables here.
             (contraction 1)
+            (widthlist)
+            (unitlist)
+            (framewidth)
             (imwidth)
             (imheight)
             (aspectratio)
@@ -25,6 +29,16 @@
         )
 
         (gimp-image-undo-group-start image)
+        (set! widthlist '((/ 65.5 100) ; cm brain
+                          57.4 ; m elephants
+                          5.9 ; m geese
+                          (* 1500 1000) ; km hurricane
+                          13.38 ; m surfer
+                          (* 766000 1000) ; km sunspots
+                          ))
+        (set! unitlist '(0.01 1 1000))
+        (set! framewidth (list-ref widthlist casenumber))
+        (set! pixwidth (* pixwidth (list-ref unitlist pixunits)))
         ; Define "contraction" as the ratio of the desired pixel to the width of the frame.
         (set! contraction (/ framewidth pixwidth))
         (set! imwidth (car (gimp-image-width image)))
@@ -96,8 +110,9 @@
     "*"
     SF-IMAGE "Image" 0
     SF-DRAWABLE "Drawable" 0
-    SF-VALUE "In real units (m, km, etc.), how wide is your image" "1"
-    SF-VALUE "In the same units, how wide is your pixel" "1"   
+    SF-OPTION "Which image are you working on" '("Brain" "Elephants" "Geese" "Hurricane" "Surfer" "Sunspots")
+    SF-OPTION "In what units are your pixels" '("centimeters" "meters" "kilometers")
+    SF-VALUE "How wide is your pixel in these units" "1"   
     SF-PALETTE "If you would like a custom color palette, select it here.  \nIf not, leave as 'Default'" "Default"
     SF-VALUE "To only set the number of bins and have the computer select which \ncolor each bin gets, specify the number of bins here (max of 256)" "2"
 )
