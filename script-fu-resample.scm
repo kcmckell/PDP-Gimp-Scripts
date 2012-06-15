@@ -6,6 +6,7 @@
 ; June 2012 -- 1.0 -- Working.
 ; June 2012 -- 1.1 -- Improve UI.  Move sampled image to new window and display resulting dimensions.
 ; June 2012 -- 1.2 -- Improve UI.  Remove user-input for framewidth.
+; June 2012 -- 1.2.1 -- Bugfix.
 ;
 
 (define (script-fu-resample image drawable casenumber pixunits pixwidth custompalette numcolors)
@@ -29,13 +30,7 @@
         )
 
         (gimp-image-undo-group-start image)
-        (set! widthlist '((/ 65.5 100) ; cm brain
-                          57.4 ; m elephants
-                          5.9 ; m geese
-                          (* 1500 1000) ; km hurricane
-                          13.38 ; m surfer
-                          (* 766000 1000) ; km sunspots
-                          ))
+        (set! widthlist (list (/ 65.5 100) 57.4 5.9 (* 1500 1000) 13.38 (* 766000 1000)))
         (set! unitlist '(0.01 1 1000))
         (set! framewidth (list-ref widthlist casenumber))
         (set! pixwidth (* pixwidth (list-ref unitlist pixunits)))
